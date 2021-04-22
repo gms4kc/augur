@@ -1,7 +1,7 @@
 1. Identify GitLab’s API
    1. [https://gitlab.com/api/v4/users?search=$email](https://gitlab.com/api/v4/users?search=$email)
 
-   2. 1. curl -XGET "[https://gitlab.com/api/v4/users?search=brossn7@gmail.com](https://gitlab.com/api/v4/users?search=brossn7@gmail.com)" -H "private-token: [Personal access token]zUpFd1JbsEYPdFL21kXK"
+   2. 1. curl -XGET "[https://gitlab.com/api/v4/users?search=brossn7@gmail.com](https://gitlab.com/api/v4/users?search=$email)" -H "private-token: $[Personal access token]"
 
    3. Must be logged in to GitLab to access their API
 
