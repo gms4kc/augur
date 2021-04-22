@@ -1,3 +1,9 @@
+# Sprint 2
+# Group 10 Semester Project
+
+This sprint we worked on the design document for our project, as well as proof of concept code.  Included are that document, a test jupyter notebook running python code to makes
+the necessary api call and printing out the api data.  This, along with our progress report can be found in the "Sprint 2 Submission" directory.
+
 # Augur
 
 branch | status
