@@ -1,3 +1,11 @@
+#Sprint 3
+
+# Group 10 Semester Project
+
+This sprint we were able to get our prototype code up and running and interacting with a database.  The Jupyter Notebook is pretty well-documented, but for clarity I will specify here that you will need an instance of postgres up and running, and the enclosed SQL will need to be run manually to set up the test schema.  You will need the psycopg2 and the request library ready for python, and will need to make a minor change to the credentials on the first line of code after the import statements.
+
+
+
 # Sprint 2
 # Group 10 Semester Project
 
