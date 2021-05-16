@@ -1,0 +1,94 @@
+-- ----------------------------
+-- Table structure for contributors
+-- ----------------------------
+DROP TABLE IF EXISTS "sean"."contributors";
+CREATE TABLE "sean"."contributors" (
+  "cntrb_id" serial8,
+  "cntrb_login" varchar(255) COLLATE "pg_catalog"."default",
+  "cntrb_email" varchar COLLATE "pg_catalog"."default",
+  "cntrb_company" varchar(255) COLLATE "pg_catalog"."default" DEFAULT NULL::character varying,
+  "cntrb_created_at" timestamp(0),
+  "cntrb_type" varchar(255) COLLATE "pg_catalog"."default",
+  "cntrb_fake" int2 DEFAULT 0,
+  "cntrb_deleted" int2 DEFAULT 0,
+  "cntrb_long" numeric(11,8) DEFAULT NULL::numeric,
+  "cntrb_lat" numeric(10,8) DEFAULT NULL::numeric,
+  "cntrb_country_code" char(3) COLLATE "pg_catalog"."default" DEFAULT NULL::bpchar,
+  "cntrb_state" varchar(255) COLLATE "pg_catalog"."default" DEFAULT NULL::character varying,
+  "cntrb_city" varchar(255) COLLATE "pg_catalog"."default" DEFAULT NULL::character varying,
+  "cntrb_location" varchar(255) COLLATE "pg_catalog"."default" DEFAULT NULL::character varying,
+  "cntrb_canonical" varchar COLLATE "pg_catalog"."default",
+  "gh_user_id" int8,
+  "gh_login" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_url" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_html_url" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_node_id" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_avatar_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_gravatar_id" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_followers_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_following_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_gists_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_starred_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_subscriptions_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_organizations_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_repos_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_events_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_received_events_url" varchar(4000) COLLATE "pg_catalog"."default",
+  "gh_type" varchar(255) COLLATE "pg_catalog"."default",
+  "gh_site_admin" varchar(255) COLLATE "pg_catalog"."default",
+  "tool_source" varchar(255) COLLATE "pg_catalog"."default",
+  "tool_version" varchar(255) COLLATE "pg_catalog"."default",
+  "data_source" varchar(255) COLLATE "pg_catalog"."default",
+  "data_collection_date" timestamp(0) DEFAULT CURRENT_TIMESTAMP,
+  "cntrb_full_name" varchar COLLATE "pg_catalog"."default",
+  "cntrb_last_used" timestamptz(0) DEFAULT NULL::timestamp with time zone, 
+	"gitlab_username" varchar COLLATE "pg_catalog"."default",
+	"gitlab_id" int 
+)
+;
+ALTER TABLE "sean"."contributors" OWNER TO "augur";
+COMMENT ON COLUMN "sean"."contributors"."cntrb_login" IS 'Will be a double population with the same value as gh_login for github, but the local value for other systems. ';
+COMMENT ON COLUMN "sean"."contributors"."cntrb_email" IS 'This needs to be here for matching contributor ids, which are augur, to the commit information. ';
+COMMENT ON COLUMN "sean"."contributors"."cntrb_type" IS 'Present in another models. It is not currently used in Augur. ';
+COMMENT ON COLUMN "sean"."contributors"."gh_login" IS 'populated with the github user name for github originated data. ';
+COMMENT ON TABLE "sean"."contributors" IS 'For GitHub, this should be repeated from gh_login. for other systems, it should be that systems login. ';
+-- ----------------------------
+-- Indexes structure for table contributors
+-- ----------------------------
+CREATE INDEX "cnt-fullname" ON "sean"."contributors" USING hash (
+  "cntrb_full_name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops"
+);
+CREATE INDEX "cntrb-theemail" ON "sean"."contributors" USING hash (
+  "cntrb_email" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops"
+);
+CREATE INDEX "cntrb_login_platform_index" ON "sean"."contributors" USING btree (
+  "cntrb_login" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+CREATE INDEX "contributor_delete_finder" ON "sean"."contributors" USING brin (
+  "cntrb_id" "pg_catalog"."int8_minmax_ops",
+  "cntrb_email" COLLATE "pg_catalog"."default" "pg_catalog"."text_minmax_ops"
+);
+CREATE INDEX "contributor_worker_email_finder" ON "sean"."contributors" USING brin (
+  "cntrb_email" COLLATE "pg_catalog"."default" "pg_catalog"."text_minmax_ops"
+);
+CREATE INDEX "contributor_worker_finder" ON "sean"."contributors" USING brin (
+  "cntrb_login" COLLATE "pg_catalog"."default" "pg_catalog"."text_minmax_ops",
+  "cntrb_email" COLLATE "pg_catalog"."default" "pg_catalog"."text_minmax_ops",
+  "cntrb_id" "pg_catalog"."int8_minmax_ops"
+);
+CREATE INDEX "contributor_worker_fullname_finder" ON "sean"."contributors" USING brin (
+  "cntrb_full_name" COLLATE "pg_catalog"."default" "pg_catalog"."text_minmax_ops"
+);
+CREATE INDEX "contributors_idx_cntrb_email3" ON "sean"."contributors" USING btree (
+  "cntrb_email" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+CREATE INDEX "login" ON "sean"."contributors" USING btree (
+  "cntrb_login" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+CREATE INDEX "login-contributor-idx" ON "sean"."contributors" USING btree (
+  "cntrb_login" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+-- ----------------------------
+-- Primary Key structure for table contributors
+-- ----------------------------
+ALTER TABLE "sean"."contributors" ADD CONSTRAINT "contributors_pkey" PRIMARY KEY ("cntrb_id");

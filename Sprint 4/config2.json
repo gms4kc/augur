@@ -1,0 +1,10 @@
+{
+    "connection_string": "sqlite:///:memory:",
+    "database": "augur_osshealth",
+    "host": "augur.osshealth.io",
+    "password": "augur",
+    "port": 5432,
+    "schema": "sean",
+    "user": "augur",
+    "user_type": "read_only"
+}
