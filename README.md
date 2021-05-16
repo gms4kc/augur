@@ -1,16 +1,16 @@
-#Sprint 3
+Group 10 Sprint 4
+-----------------------------------------------
 
-# Group 10 Semester Project
+In our final sprint, we took our working prototype code and integrated it with the schema that Sean provided for us on Slack, and implemented error handling to ensure nothing trips us up as we go about matching contributor information to GitLab information.
 
-This sprint we were able to get our prototype code up and running and interacting with a database.  The Jupyter Notebook is pretty well-documented, but for clarity I will specify here that you will need an instance of postgres up and running, and the enclosed SQL will need to be run manually to set up the test schema.  You will need the psycopg2 and the request library ready for python, and will need to make a minor change to the credentials on the first line of code after the import statements.
+The following information is in the documentation of our Jupyter Notebook as well, but is also addressed here for clarity's sake.
 
+We found the databse that Goggins suggested to us, after having had some difficulty last sprint.  However, the credentials we had for the augur-community-reports databases (user chaoss) did not have permission to interact with the schema "sean", and it didn't feel right to attempt to test any student code on the other production databases.  For that reason we set up a new database locally (with the same schema via SQL provided by Sean) and copied the data out of the contributors table into our own.  
 
+We modified the code to accept a config file instead of hardcoded values, so to test this code on your desired environment, be that your own local database or on the augur-community-reports live database, you will need to make relevant changes to the config file to access that database.
 
-# Sprint 2
-# Group 10 Semester Project
+As long as you've done that, it should be as simple as running our Jupyter Notebook from beginning to end!
 
-This sprint we worked on the design document for our project, as well as proof of concept code.  Included are that document, a test jupyter notebook running python code to makes
-the necessary api call and printing out the api data.  This, along with our progress report can be found in the "Sprint 2 Submission" directory.
 
 # Augur
 

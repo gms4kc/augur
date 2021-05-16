@@ -1,0 +1,11 @@
+{
+    "connection_string": "sqlite:///:memory:",
+    "database": "augurTest",
+    "host": "localhost",
+    "password": "badpassword",
+    "port": 5432,
+    "schema": "sean",
+    "user": "postgres",
+    "user_type": "read_only",
+	"gitlab_token": "zUpFd1JbsEYPdFL21kXK"
+}
