@@ -1,5 +1,7 @@
 This sprint we were able to connect to the "contributors" table on the augur-community-reports to get more data instead of just using our personal emails. 
 
-There was an issue with connecting, so we just made our own database with the same schema and imported the "contributors" table. There was also problems dealing with errors when no email was found or no GitLab ID was found, but those were worked around and now errors are dealt with properly. 
+There was an issue with connecting (detailed more in the notebook), so we just made our own database with the same schema and imported the "contributors" table. There was also problems dealing with errors when no email was found or no GitLab ID was found, but those were worked around and now errors are dealt with properly. 
 
-On our requirements document, all of our top priorities are met and are working in the final product. The user interface was not worked on (from our initial requirements in sprint 1). The updated requirements are in the sprint 4 submission. 
+On our requirements document, all of our top priorities are met and are working in the final product. The user interface was not worked on (from our initial requirements in sprint 1). The updated requirements are in the sprint 4 submission.  Our project basically fell entirely within scope.  While we may have benefited from anticipating at the beginning the need to integrate the necessary libraries we used in this project, this could ultimately be considered a standard part of development and left at that.
+
+In the original flow chart provided to us, detailing each sprint, there is an instruction attached to sprint 4 to "issue pull request for all integrated feature branches back to https://~~/augur".  We haven't done this, as we feel that it might be a bit rough trying to integrate student code into the working master branch.
